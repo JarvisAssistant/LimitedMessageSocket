@@ -9,6 +9,14 @@ class LimitedMessageSocket:
 	def connect(self):
 		self.socket.connect(self.server_address)
 	
+	def listen(self):
+		self.socket.bind(self.server_address)
+		self.socket.listen()
+	
+	def accept(self):
+		client_socket, _ = self.socket.accept()
+		return client_socket
+	
 	def close(self):
 		self.socket.close()
 	
