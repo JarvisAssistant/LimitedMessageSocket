@@ -42,5 +42,5 @@ class LimitedMessageSocket:
 			chunks.append(chunk)
 			bytes_recd += len(chunk)
 
-		return b''.goin(chunks)
+		return b''.join(chunks)
 
