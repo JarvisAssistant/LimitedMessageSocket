@@ -2,8 +2,11 @@ import socket
 
 class LimitedMessageSocket:
 	MSG_LEN = 1024
-	def __init__(self, server_address):
-		self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	def __init__(self, server_address=None, socket=None):
+		self.socket = socket
+		if not self.socket:
+			self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
 		self.server_address = server_address
 	
 	def connect(self):
