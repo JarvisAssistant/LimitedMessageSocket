@@ -1,7 +1,7 @@
 import socket
 
 class LimitedMessageSocket:
-	MSG_LEN = 1024
+	MSG_LEN = 2048
 	def __init__(self, server_address=None, ext_socket=None):
 		self.socket = ext_socket
 		if not self.socket:
@@ -24,14 +24,19 @@ class LimitedMessageSocket:
 		self.socket.close()
 	
 	def send(self, message):
+		self.socket.send(message)
+		'''
 		totalsent = 0
 		while totalsent < LimitedMessageSocket.MSG_LEN:
 			sent = self.socket.send(msg[totalsent:])
 			if not sent:
 				raise RuntimeError('socket connection broken')
 			totalsent += sent
+		'''
 	
 	def receive(self):
+		return self.socket.recv(LimitedMessageSocket.MSG_LEN)
+		'''
 		chunks = []
 		bytes_recd = 0
 		while bytes_recd < LimitedMessageSocket.MSG_LEN:
@@ -43,4 +48,5 @@ class LimitedMessageSocket:
 			bytes_recd += len(chunk)
 
 		return b''.join(chunks)
+		'''
 
