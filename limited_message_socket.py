@@ -24,7 +24,7 @@ class LimitedMessageSocket:
 		self.socket.close()
 	
 	def send(self, message):
-		self.socket.send(message)
+		self.socket.send(message.encode())
 		'''
 		totalsent = 0
 		while totalsent < LimitedMessageSocket.MSG_LEN:
@@ -35,7 +35,7 @@ class LimitedMessageSocket:
 		'''
 	
 	def receive(self):
-		return self.socket.recv(LimitedMessageSocket.MSG_LEN)
+		return self.socket.recv(LimitedMessageSocket.MSG_LEN).decode()
 		'''
 		chunks = []
 		bytes_recd = 0
