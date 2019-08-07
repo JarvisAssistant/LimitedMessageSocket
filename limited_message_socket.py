@@ -2,8 +2,8 @@ import socket
 
 class LimitedMessageSocket:
 	MSG_LEN = 1024
-	def __init__(self, server_address=None, socket=None):
-		self.socket = socket
+	def __init__(self, server_address=None, ext_socket=None):
+		self.socket = ext_socket
 		if not self.socket:
 			self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
